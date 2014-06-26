@@ -91,6 +91,31 @@
 
 
 <div class="post">
+  <h3 class="title"><a href="/2014/Windows下查看端口和进程绑定.html">Windows下查看端口和进程绑定</a> <span class="date">2014-06-26</span></h3>
+
+  <h2><a style="display: block;" name="windows下查看端口和进程绑定" href="#windows下查看端口和进程绑定"></a>Windows下查看端口和进程绑定</h2>
+
+<p>最近准备开始学习Android开发，昨晚在用Eclipse开发，准备在模拟器上面跑程序的时候，报8700端口已经被绑定了，我很奇怪，心想难道是其他程序把8700端口给占用了？ 但是我还不知道如何查是哪个程序将8700端口占用了。于是上网查了一下如何查看端口和进程的绑定情况，这里做个记录，以备后忘，哈哈。</p>
+
+<p>1.netstat -ano | findstr &ldquo;8700&rdquo;</p>
+
+<p>TCP     127.0.0.1：8700      0.0.0.0：0       LISTENING       6988</p>
+
+<p>其中最后一列的6988是对应进程的PID，然后再通过tasklist命令查找那个进程是6988</p>
+
+<p>2.tasklist | findstr &ldquo;6988&rdquo;</p>
+
+<p>eclipse.exe     6988    Console         1       388,448K</p>
+
+<p>这样通过简单的两个命令就能找出哪个程序将8700端口给占用了。这里，我可能不小心开了两个eclipse，导致第一个已经占用了8700端口，后面一个试图获得8700端口时就会报错。</p>
+
+
+  <div class="more">
+    <a href="/2014/Windows下查看端口和进程绑定.html" class="btn">read more..</a>
+  </div>
+</div>
+
+<div class="post">
   <h3 class="title"><a href="/2014/new-born.html">我的第一篇Blog</a> <span class="date">2014-05-15</span></h3>
 
   <h1>我的第一篇Blog</h1>
