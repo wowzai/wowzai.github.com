@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<rss version="2.0">  <channel>
+    <title>Wowzai&#39;s Blog</title>
+    <link>http://wowzai.com</link>
+    <pubDate>16 May 14 20:07 CST</pubDate>
+    <item>
+      <title>我的第一篇Blog</title>
+      <link>http://wowzai.com/2014/new-born.html</link>
+      <pubDate>2014-05-15 12:00:00 +0800</pubDate>
+      <description>&lt;h1&gt;我的第一篇Blog&lt;/h1&gt;&#xA;&#xA;&lt;p&gt;&amp;ndash;&lt;/p&gt;&#xA;&#xA;&lt;p&gt;我的第一篇blog,new born!&lt;/p&gt;&#xA;&#xA;&lt;p&gt;加油吧，少年！&lt;/p&gt;&#xA;</description>
+    </item>
+  </channel>
+</rss>
