@@ -91,6 +91,34 @@
 
 
 <div class="post">
+  <h3 class="title"><a href="/2014/oracle-explain-plan-1.html">Oracle中的执行计划</a> <span class="date">2014-06-27</span></h3>
+
+  <p>##Oracle中的执行计划</p>
+
+<p>由于工作的关系，最近准备系统的学习一下Oracle相关知识，尤其是优化方面的东西，因为工作中可能会碰到性能问题，所以需要准备学习一下这方面的知识。</p>
+
+<p>讲到Oracle的性能优化，首先想到的就是Oracle中的优化器。众所周知，Oracle中的优化器有RBO和CBO，由于RBO机会没有什么实际用处，这里就不赘述。</p>
+
+<p>CBO中用到的两个概念：</p>
+
+<p><strong>集的势</strong><br />
+Cardinlity表示对目标SQL的某个具体执行步骤的执行结果所包含记录数的估算，如果是针对整个目标SQL，那么此时的Cardinality就表示对该SQL最终执行结果所包含记录数的估算。
+一般情况下某个执行步骤对应的Cardinality的值越大，其所对应的成本值往往也就越大，这个执行步骤所在执行路径的总成本值也就会越大。</p>
+
+<p><strong>可选择率</strong><br />
+Selectivity = 施加指定谓词条件后返回结果集的记录数/未施加任何谓词条件的原始结果集记录数</p>
+
+<p>补充：Cardinlity和Selectivity对于性能的影响</p>
+
+<p><strong>访问数据的方法</strong></p>
+
+
+  <div class="more">
+    <a href="/2014/oracle-explain-plan-1.html" class="btn">read more..</a>
+  </div>
+</div>
+
+<div class="post">
   <h3 class="title"><a href="/2014/Windows下查看端口和进程绑定.html">Windows下查看端口和进程绑定</a> <span class="date">2014-06-26</span></h3>
 
   <h2><a style="display: block;" name="windows下查看端口和进程绑定" href="#windows下查看端口和进程绑定"></a>Windows下查看端口和进程绑定</h2>
