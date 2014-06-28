@@ -2,7 +2,13 @@
 <rss version="2.0">  <channel>
     <title>Wowzai&#39;s Blog</title>
     <link>http://wowzai.com</link>
-    <pubDate>27 Jun 14 12:39 CST</pubDate>
+    <pubDate>28 Jun 14 23:18 CST</pubDate>
+    <item>
+      <title>关于最近</title>
+      <link>http://wowzai.com/2014/2014-my-life-06.html</link>
+      <pubDate>2014-06-28 12:00:00 +0800</pubDate>
+      <description>&lt;p&gt;最近工作很忙，哦，不，是一直以来工作都是很忙，好像一直都没有喘气的机会，自己心里总是想着这次把手头上的事情做完了可以好好休息一小段时间，调整调整，但是好像一直都没有机会喘口气，就这样一直忙呀忙，但是好像又什么都没有忙出来，瞎忙啊。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;去年的这个时候，涛哥离职了，说实话挺触动我的，我就在想我哪一天会从这个办公室走出去，可能再也不会走回来。转眼一年的时间过去了，工作强度似乎不减反增，除了周五，几乎每天都加班。每天手上有很多事情。忙碌的工作，一件事情做的不好，心里都不好受，但是又不可避免，心里压力好大。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;繁忙的对我最大的影响是记忆力下降，脑子记不住事情了，最明显的是水杯总是忘了，要么忘了盛水，要么是盛水了忘了带回来，还有就是脑子跟不上，总是两眼发呆，脑子感觉是空的。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;工作似乎陷入了一个恶性循环，事情越多&amp;ndash;&amp;gt;手忙脚乱&amp;ndash;&amp;gt;心理压力大&amp;ndash;&amp;gt;忙中出错&amp;ndash;&amp;gt;事情越多，好像没有时间来好好梳理梳理，有个周末，惰性加一些乱七八糟的事情两天很快就过去了。然后周一又重复上一周的工作。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;由于工作占用了我的大部分时间，再加上自己的时间管理差，导致我自己的计划无法开展开来，生活变得有一点点糟糕。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;一年的时间很快，眼看着涛哥离开，一年内自己想学的东西基本上一样都没有学成，明年的现在，我又能达到期望中的我百分之多少呢，同时合同也将到期，我还会留在这里嘛？ 天知道。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;哎，就是发发牢骚，其实心里挺难过的。&lt;/p&gt;&#xA;</description>
+    </item>
     <item>
       <title>Oracle中的执行计划</title>
       <link>http://wowzai.com/2014/oracle-explain-plan-1.html</link>

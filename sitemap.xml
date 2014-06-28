@@ -4,6 +4,11 @@
 		<loc>http://wowzai.com/</loc>
 	</url>
 	<url>
+		<loc>http://wowzai.com/2014/2014-my-life-06.html</loc>
+		<lastmod>2014-06-28</lastmod>
+		<changefreq>weekly</changefreq>
+	</url>
+	<url>
 		<loc>http://wowzai.com/2014/oracle-explain-plan-1.html</loc>
 		<lastmod>2014-06-27</lastmod>
 		<changefreq>weekly</changefreq>
