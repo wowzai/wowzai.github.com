@@ -2,7 +2,13 @@
 <rss version="2.0">  <channel>
     <title>wowzai&#39;s blog</title>
     <link>http://wowzai.com</link>
-    <pubDate>29 Jun 14 22:49 CST</pubDate>
+    <pubDate>30 Jun 14 20:45 CST</pubDate>
+    <item>
+      <title>git自我教程</title>
+      <link>http://wowzai.com/2014/my-git-manual.html</link>
+      <pubDate>2014-06-30 12:00:00 +0800</pubDate>
+      <description>&lt;p&gt;首先，需要说明的是这是写给自己看的，所以叫自我教程，这里只是记录我经常要用的一些命令，并且会持续更新，由于我最近刚刚开始使用git，所以很多东西还不懂的使用。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;初始化库：&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;git init&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;增加文件：&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;git add &amp;lt;filename&amp;gt;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;提交文件：&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;git commit -m &amp;quot;comment&amp;quot;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;查看远程库：&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;git remote -v &#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;增加远程库：&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;git remote add &amp;lt;name&amp;gt; &amp;lt;url&amp;gt;  &#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;eg:&#xA;&lt;code&gt;&#xA;git remote add wowzai git@github.com:wowzai/repo.git&#xA;&lt;/code&gt;&lt;/p&gt;&#xA;&#xA;&lt;p&gt;如果发现远程库写错了，可以删除远程库：&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;git remote remove &amp;lt;name&amp;gt;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;从远处库中拉取远程库到本地库：&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;git pull remote-repo-name&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;暂时我常用的一些git命令就是这些，对于像合并、建立分支我暂时还没用到，所以这里先不记录，等用到了再来了解。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;&amp;lt;持续更新中&amp;hellip;&amp;gt;&lt;/p&gt;&#xA;</description>
+    </item>
     <item>
       <title>关于最近</title>
       <link>http://wowzai.com/2014/2014-my-life-06.html</link>
