@@ -91,6 +91,36 @@
 
 
 <div class="post">
+  <h3 class="title"><a href="/2014/defer-in-golang.html">golang中defer的执行位置</a> <span class="date">2014-07-07</span></h3>
+
+  <p>##golang中defer的执行位置</p>
+
+<p>大家都知道golang的defer关键字，它可以在函数返回前执行一些操作，最常用的就是打开一个资源（例如一个文件、数据库连接等）时就用defer延迟关闭改资源，以免引起内存泄漏。例如：</p>
+
+<pre><code>func do() (ok bool) {
+  file,_ := os.Open(&quot;c:\a.txt&quot;)
+  defer file.Close()
+  // doSomething
+  return ok
+}
+</code></pre>
+
+<p>我们可以在官方的文档中看到defer的执行顺序是逆序的，也就是先进后出的顺序：</p>
+
+<pre><code>for i := 0; i &lt; 5; i++ {
+  defer fmt.Printf(&quot;%d &quot;, i)
+}
+</code></pre>
+
+<p>打印结果是：4,3,2,1,0</p>
+
+
+  <div class="more">
+    <a href="/2014/defer-in-golang.html" class="btn">read more..</a>
+  </div>
+</div>
+
+<div class="post">
   <h3 class="title"><a href="/2014/my-git-manual.html">git自我教程</a> <span class="date">2014-06-30</span></h3>
 
   <p>首先，需要说明的是这是写给自己看的，所以叫自我教程，这里只是记录我经常要用的一些命令，并且会持续更新，由于我最近刚刚开始使用git，所以很多东西还不懂的使用。</p>

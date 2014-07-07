@@ -2,7 +2,13 @@
 <rss version="2.0">  <channel>
     <title>wowzai&#39;s blog</title>
     <link>http://www.wowzai.com</link>
-    <pubDate>04 Jul 14 22:51 CST</pubDate>
+    <pubDate>07 Jul 14 22:32 CST</pubDate>
+    <item>
+      <title>golang中defer的执行位置</title>
+      <link>http://www.wowzai.com/2014/defer-in-golang.html</link>
+      <pubDate>2014-07-07 12:00:00 +0800</pubDate>
+      <description>&lt;p&gt;##golang中defer的执行位置&lt;/p&gt;&#xA;&#xA;&lt;p&gt;大家都知道golang的defer关键字，它可以在函数返回前执行一些操作，最常用的就是打开一个资源（例如一个文件、数据库连接等）时就用defer延迟关闭改资源，以免引起内存泄漏。例如：&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;func do() (ok bool) {&#xA;  file,_ := os.Open(&amp;quot;c:\a.txt&amp;quot;)&#xA;  defer file.Close()&#xA;  // doSomething&#xA;  return ok&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;我们可以在官方的文档中看到defer的执行顺序是逆序的，也就是先进后出的顺序：&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;for i := 0; i &amp;lt; 5; i++ {&#xA;  defer fmt.Printf(&amp;quot;%d &amp;quot;, i)&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;打印结果是：4,3,2,1,0&lt;/p&gt;&#xA;&#xA;&lt;p&gt;那么再看这个例子：&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;func deferRet(x,y int) (z int){&#xA;  defer z += 100&#xA;  z = x + y&#xA;  return z + 50 // 执行顺序 z = z+50 -&amp;gt; (call defer)z = z+100 -&amp;gt; ret  &#xA;}&#xA;&#xA;func main() {&#xA;  i := deferRet(1,1)&#xA;  println(i)  // print 152&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;我想这个例子已经能够让你明白defer的执行顺序了。&lt;/p&gt;&#xA;</description>
+    </item>
     <item>
       <title>git自我教程</title>
       <link>http://www.wowzai.com/2014/my-git-manual.html</link>
