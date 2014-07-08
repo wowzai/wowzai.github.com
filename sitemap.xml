@@ -4,6 +4,11 @@
 		<loc>http://www.wowzai.com/</loc>
 	</url>
 	<url>
+		<loc>http://www.wowzai.com/2014/method-value-vs-method-expression-in-golang.html</loc>
+		<lastmod>2014-07-08</lastmod>
+		<changefreq>weekly</changefreq>
+	</url>
+	<url>
 		<loc>http://www.wowzai.com/2014/defer-in-golang.html</loc>
 		<lastmod>2014-07-07</lastmod>
 		<changefreq>weekly</changefreq>

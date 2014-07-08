@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>那么穷为什么还要去旅行</title>
+    <title>Method Value和Method Expression</title>
   
     <meta name="author" content="wowzai">
 
@@ -78,33 +78,88 @@
 
       <div class="content">
         <div class="page-header">
-  <h1>那么穷为什么还要去旅行 </h1>
+  <h1>Method Value和Method Expression </h1>
 </div>
 
 <div class="row">
   <div class="span8">
-    <p>要么读书，要么旅行，身体和灵魂总有一个在路上。</p>
+    <p>根据调用者不同，方法分为两种表现形式：</p>
 
-<p>这句话也无从考证最原始的出处了，不过有一个叫刘屈艳扬(http://baike.baidu.com/view/10466274.htm?fr=aladdin#作者简介)写了一本这本书《要么读书，要么旅行，身体和灵魂总有一个在路上》(http://book.douban.com/subject/24264880/)</p>
+<p>instance.method(args&hellip;)  <type>.func(instance,args&hellip;)</p>
 
-<p>《身体和灵魂.总有一个要在路上》
-<a href="http://book.douban.com/subject/10806089/">http://book.douban.com/subject/10806089/</a></p>
+<p>其中，前者为method value,后者为method expression。</p>
 
-<p>在我小时候，那里是农村，那时候还能直接从沟里挑水喝，那是个无山但是水清的地方，但是那时候大家都很穷。</p>
+<p>两者的区别是method value绑定实例，method expression则须显示传参。</p>
+
+<pre><code>type User struct {
+  id   int
+  name string
+}
+
+func (self *User) Test() {
+  fmt.Printf(&quot;%p, %v\n&quot;,self,self)
+}
+
+func main() {
+  u := User{1,&quot;Tom&quot;}
+  u.Test()
+
+  mValue := u.Test  //这里u是一个实例(instance)
+  mValue()  //所以这里是method value，隐式传递receiver
+
+  mExpression := (*User).Test //这里*User是&lt;type&gt;
+  mExpression(&amp;u)//所以这里显示传递receiver
+}
+</code></pre>
+
+<p>输出：</p>
+
+<pre><code>0x210030000,&amp;{1 Tom}
+0x210030000,&amp;{1 Tom}
+0x210030000,&amp;{1 Tom}
+</code></pre>
+
+<p>method value会复制receiver</p>
+
+<pre><code>type User struct {
+  id int
+  name string
+}
+
+func (self User) Test() {
+  fmt.Println(self)
+}
+
+func main() {
+  u := User{1,&quot;Tom&quot;}
+  mValue := u.Test  //立即复制 receiver,因为不是指针类型，不受后续修改影响
+
+  u.id,u.name = 2, &quot;Jack&quot;
+  u.Test()
+
+  mValue()
+}
+</code></pre>
+
+<p>输出：</p>
+
+<pre><code>{2 Jack}
+{1 Tom}
+</code></pre>
 
     <hr>
     <div class="pagination">
       <ul>
         <ul>
           
-            <li class="prev"><a href="/2014/my-git-manual.html" title="git自我教程">&larr; Previous</a></li>
           
+            <li class="prev disabled"><a>&larr; Previous</a></li>
           
 
             <li><a href="/archive">Archive</a></li>
 
           
-            <li class="next"><a href="/2014/2014-my-life-06.html" title="关于最近">Next &rarr;</a></li>
+            <li class="next"><a href="/2014/defer-in-golang.html" title="golang中defer的执行位置">Next &rarr;</a></li>
           
           
         </ul>
@@ -130,7 +185,7 @@
   
   <div class="span4">
     <h4>Published</h4>
-    <div class="date"><span>2014-06-30</span></div>
+    <div class="date"><span>2014-07-08</span></div>
     <br>
     <h4>Categories</h4>
     <ul class="tag_box">
@@ -145,11 +200,7 @@
     <ul class="tag_box">
     
       <li>
-  <a href="/tags/#%E6%80%9D%E8%80%83-ref">思考 <span>1</span></a>
-</li>
-    
-      <li>
-  <a href="/tags/#%E6%97%85%E8%A1%8C-ref">旅行 <span>1</span></a>
+  <a href="/tags/#golang-ref">golang <span>2</span></a>
 </li>
     
     </ul>

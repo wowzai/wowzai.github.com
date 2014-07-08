@@ -2,7 +2,13 @@
 <rss version="2.0">  <channel>
     <title>wowzai&#39;s blog</title>
     <link>http://www.wowzai.com</link>
-    <pubDate>07 Jul 14 22:32 CST</pubDate>
+    <pubDate>08 Jul 14 21:49 CST</pubDate>
+    <item>
+      <title>Method Value和Method Expression</title>
+      <link>http://www.wowzai.com/2014/method-value-vs-method-expression-in-golang.html</link>
+      <pubDate>2014-07-08 12:00:00 +0800</pubDate>
+      <description>&lt;p&gt;根据调用者不同，方法分为两种表现形式：&lt;/p&gt;&#xA;&#xA;&lt;p&gt;instance.method(args&amp;hellip;)  &lt;type&gt;.func(instance,args&amp;hellip;)&lt;/p&gt;&#xA;&#xA;&lt;p&gt;其中，前者为method value,后者为method expression。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;两者的区别是method value绑定实例，method expression则须显示传参。&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;type User struct {&#xA;  id   int&#xA;  name string&#xA;}&#xA;&#xA;func (self *User) Test() {&#xA;  fmt.Printf(&amp;quot;%p, %v\n&amp;quot;,self,self)&#xA;}&#xA;&#xA;func main() {&#xA;  u := User{1,&amp;quot;Tom&amp;quot;}&#xA;  u.Test()&#xA;&#xA;  mValue := u.Test  //这里u是一个实例(instance)&#xA;  mValue()  //所以这里是method value，隐式传递receiver&#xA;&#xA;  mExpression := (*User).Test //这里*User是&amp;lt;type&amp;gt;&#xA;  mExpression(&amp;amp;u)//所以这里显示传递receiver&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;输出：&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;0x210030000,&amp;amp;{1 Tom}&#xA;0x210030000,&amp;amp;{1 Tom}&#xA;0x210030000,&amp;amp;{1 Tom}&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;method value会复制receiver&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;type User struct {&#xA;  id int&#xA;  name string&#xA;}&#xA;&#xA;func (self User) Test() {&#xA;  fmt.Println(self)&#xA;}&#xA;&#xA;func main() {&#xA;  u := User{1,&amp;quot;Tom&amp;quot;}&#xA;  mValue := u.Test  //立即复制 receiver,因为不是指针类型，不受后续修改影响&#xA;&#xA;  u.id,u.name = 2, &amp;quot;Jack&amp;quot;&#xA;  u.Test()&#xA;&#xA;  mValue()&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;输出：&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;{2 Jack}&#xA;{1 Tom}&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;</description>
+    </item>
     <item>
       <title>golang中defer的执行位置</title>
       <link>http://www.wowzai.com/2014/defer-in-golang.html</link>

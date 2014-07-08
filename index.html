@@ -91,6 +91,37 @@
 
 
 <div class="post">
+  <h3 class="title"><a href="/2014/method-value-vs-method-expression-in-golang.html">Method Value和Method Expression</a> <span class="date">2014-07-08</span></h3>
+
+  <p>根据调用者不同，方法分为两种表现形式：</p>
+
+<p>instance.method(args&hellip;)  <type>.func(instance,args&hellip;)</p>
+
+<p>其中，前者为method value,后者为method expression。</p>
+
+<p>两者的区别是method value绑定实例，method expression则须显示传参。</p>
+
+<pre><code>type User struct {
+  id   int
+  name string
+}
+
+func (self *User) Test() {
+  fmt.Printf(&quot;%p, %v\n&quot;,self,self)
+}
+
+func main() {
+  u := User{1,&quot;Tom&quot;}
+  u.Test()
+</code></pre>
+
+
+  <div class="more">
+    <a href="/2014/method-value-vs-method-expression-in-golang.html" class="btn">read more..</a>
+  </div>
+</div>
+
+<div class="post">
   <h3 class="title"><a href="/2014/defer-in-golang.html">golang中defer的执行位置</a> <span class="date">2014-07-07</span></h3>
 
   <p>##golang中defer的执行位置</p>
