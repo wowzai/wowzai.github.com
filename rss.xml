@@ -2,7 +2,7 @@
 <rss version="2.0">  <channel>
     <title>wowzai&#39;s blog</title>
     <link>http://www.wowzai.com</link>
-    <pubDate>08 Jul 14 21:49 CST</pubDate>
+    <pubDate>09 Jul 14 22:26 CST</pubDate>
     <item>
       <title>Method Value和Method Expression</title>
       <link>http://www.wowzai.com/2014/method-value-vs-method-expression-in-golang.html</link>
