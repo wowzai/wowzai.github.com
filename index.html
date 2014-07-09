@@ -91,6 +91,36 @@
 
 
 <div class="post">
+  <h3 class="title"><a href="/2014/array-and-slice-in-golang.html">Array和Slice</a> <span class="date">2014-07-09</span></h3>
+
+  <h3>Array</h3>
+
+<p>Array可以看作一个有长度的变量，每个单元都可以存放一个元素，例如：<br />
+    var buffer [100]int</p>
+
+<p>在内存中buffer类似如下：<br />
+   <code>buffer: int int int ... 100 times ... int int int</code></p>
+
+<p>Array中的长度也是类型的一部分，例如[200]int和[100]int是不同类型的：</p>
+
+<pre><code>testArray(arr [100]int) {
+  // ...
+}
+
+var a1 [100]int
+var a2 [200]int
+
+testArray(a1)  // OK
+testArray(a2)  // Wrong
+</code></pre>
+
+
+  <div class="more">
+    <a href="/2014/array-and-slice-in-golang.html" class="btn">read more..</a>
+  </div>
+</div>
+
+<div class="post">
   <h3 class="title"><a href="/2014/method-value-vs-method-expression-in-golang.html">Method Value和Method Expression</a> <span class="date">2014-07-08</span></h3>
 
   <p>根据调用者不同，方法分为两种表现形式：</p>

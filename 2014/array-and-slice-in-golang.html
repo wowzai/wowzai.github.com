@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Array和Slice</title>
+  
+    <meta name="author" content="wowzai">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/twitter/stylesheets/bootstrap.min.css" type="text/css" rel="stylesheet" media="all">
+<link href="/assets/twitter/stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<link href="/assets/twitter/widgets/google_prettify/stylesheets/twitter-bootstrap.css" type="text/css" rel="stylesheet" media="all">
+ 
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">wowzai&#39;s blog</a>
+          <ul class="nav">
+            
+              
+
+
+  <li><a href="/archive">Archive</a></li>
+
+
+            
+              
+
+
+  <li><a href="/tags">Tags</a></li>
+
+
+            
+              
+
+
+  <li><a href="/categories">Categories</a></li>
+
+
+            
+              
+
+
+  <li><a href="/pages">Pages</a></li>
+
+
+            
+              
+
+
+  <li><a href="/about">About Me</a></li>
+
+
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        <div class="page-header">
+  <h1>Array和Slice </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <h3>Array</h3>
+
+<p>Array可以看作一个有长度的变量，每个单元都可以存放一个元素，例如：<br />
+    var buffer [100]int</p>
+
+<p>在内存中buffer类似如下：<br />
+   <code>buffer: int int int ... 100 times ... int int int</code></p>
+
+<p>Array中的长度也是类型的一部分，例如[200]int和[100]int是不同类型的：</p>
+
+<pre><code>testArray(arr [100]int) {
+  // ...
+}
+
+var a1 [100]int
+var a2 [200]int
+
+testArray(a1)  // OK
+testArray(a2)  // Wrong
+</code></pre>
+
+<p>Array可以用来表示矩阵，但是通常是作为slice的存储基础</p>
+
+<p>###Slice Header</p>
+
+<p>Slice可以看作是Array的部分片段，而不是Array（A Slice is not an an array,a slice is piece of an array）</p>
+
+<pre><code>slice := array[10:20]
+</code></pre>
+
+<p>slice也可以对slice进行“切片”：</p>
+
+<pre><code>s2 := slice[5:10]  //新定义一个变量s2，是对slice片段的描述
+slice := slice[5:10]  //对自己切片并将变量付给自身
+</code></pre>
+
+<p>可以将Slice看成一个包含长度和起始地址的数据结构：</p>
+
+<pre><code>type sliceHeader struct {
+  Length    int
+  ZeroElement *int  //不一定是*int，元素是什么类型就是什么类型的指针
+}
+</code></pre>
+
+<p>例如上面的slice变量可以看成如下：</p>
+
+<pre><code>slice := sliceHeader {
+  Length: 10,
+  ZeroElement: &amp;array[10],
+}
+</code></pre>
+
+<p>###Slice作为函数参数传递
+slice是一个包含长度和一个指针的结构体的值，而不是一个指向一个结构体的指针，函数参数中的slice在传进去的时候是一个struct值的复制值，修改slice中的元素值就是修改其所持有Array的元素值，例如：</p>
+
+<pre><code>func AddSlice(slice []int) {  
+  for i := range slice {  
+    slice[i]++  
+  }  
+} 
+func main() {  
+  slice := []int{1,2,3,4,5,6,7,8,9,10}  
+  fmt.Println(&quot;before:&quot;,slice)  
+  AddSlice(slice)  
+  fmt.Println(&quot;after:&quot;,slice) 
+}
+</code></pre>
+
+<p>pirint:</p>
+
+<pre><code>before: [1,2,3,4,5,6,7,8,9,10]
+after: [2,3,4,5,6,7,8,9,10,11]
+</code></pre>
+
+<p>函数传递进去时候slice只是一个复制值，可以通过如下例子看出：</p>
+
+<pre><code>func SubSlice(slice []int) []int {
+  slice := slice[0:len(slice)-1]
+  return slice
+}
+
+func main() {
+  slice := []int{1,2,3,4,5,6,7,8,9,10}  
+  fmt.Println(&quot;before: len(slice) =&quot;,slice)  
+  newSlice := SubSlice(slice)  
+  fmt.Println(&quot;after: len(slice) =&quot;,slice)
+  fmt.Println(&quot;after: len(newSlice) =&quot;,newSlice) 
+}
+</code></pre>
+
+<p>print:</p>
+
+<pre><code>before: len(slice) = 10
+after: len(slice) = 10
+after: len(newSlice) = 9
+</code></pre>
+
+<h3>指向Slice的指针</h3>
+
+<p>如果想修改slice header的内容，可以传递一个指向slice的指针，例如：</p>
+
+<pre><code>func PtrSubSlice(slicePtr *[]int) {
+  newSlice := *slicePtr
+  *slicePtr = newSlice[0:len(newSlice)-1]
+}
+func main() {
+  fmt.Println(&quot;before: len(slice) =&quot;, len(slice))
+  PtrSubSlice(&amp;slice)
+  fmt.Println(&quot;after: len(slice) =&quot;, len(slice))
+}
+</code></pre>
+
+<p>print：</p>
+
+<pre><code>before: len(slice) = 10
+after: len(slice) = 9
+</code></pre>
+
+<p>作为方法的接收者，可以修改这个slice：</p>
+
+<pre><code>type path []byte
+
+func (p *path) TruncateAtFinalSlash() {
+  i := bytes.LastIndex(*p,[]byte(&quot;/&quot;))
+  if i &gt;= 0 {
+    *p = (*p)[0:i]
+  }
+}
+
+//ASCII letters to Upper
+func (p path) ToUpper() {
+  for i,b := rang p {
+    if 'a' &lt;= b &amp;&amp; b &lt;= 'z' {
+      p[i] = b + 'A' - 'a'
+    }
+  }
+}
+
+func main() {
+  pathName := path(&quot;/usr/bin/tso&quot;)
+  pathName.TruncateAtFinalSlash()
+  fmt.Printf(&quot;%s\n&quot;,pathName)
+  pathName.ToUpper()
+  fmt.Printf(&quot;%s\n&quot;,pathName)
+}
+</code></pre>
+
+<p>print:</p>
+
+<pre><code>/usr/bin
+/USR/BIN
+</code></pre>
+
+<p>###容量(Capacity)
+如何扩展slice的长度呢？</p>
+
+<pre><code>func Extend(slice []int, element int) []int {
+  n := len(slice)
+  slice = slice[0:n+1]
+  slice[n] = element
+  return slice  //why return the modified slice?
+}
+
+func main() {
+  var array [10]int
+  slice := array[0:0] // slice:[]
+  for i:=0; i&lt;20; i++ {
+    slice = Extend(slice,i)
+    fmt.Println(slice)
+  }
+}
+</code></pre>
+
+<p>这里运行的时候会报错，只会打印出前面10个数字，因为超过10的话已经超过了slice底层的array的长度，所以slice header还包含它的容量，表示其能表示的最大长度：</p>
+
+<pre><code>type sliceHeader struct {
+  Length int
+  Capacity int
+  ZeroElement *byte
+}
+</code></pre>
+
+<p>当执行了slice := array[0:0]的时候，slice header如下：</p>
+
+<pre><code>slice := sliceHeader {
+  Length: 0,
+  Capacity: 10,
+  ZeroElement: &amp;array[0],
+}
+</code></pre>
+
+<p>我们可以通过内置的cap函数获得slice的容量：</p>
+
+<pre><code>if cap(slice) == len(slice) {
+  fmt.Println(&quot;slice is full&quot;)
+}
+</code></pre>
+
+<p>###Make
+上面的例子中我们可以看到在要扩张slice的时候，这个时候我们就可以用内置的make函数来扩展我们的slice:</p>
+
+<pre><code>slice := make([]int, 10, 15)
+fmt.Printf(&quot;len:%d, cap:%d\n&quot;,len(slice),cap(slice))
+</code></pre>
+
+<p>print:</p>
+
+<pre><code>len:10, cap:15
+</code></pre>
+
+<p>我们可以让我们的slice扩展两倍：</p>
+
+<pre><code>slice := make([]int, 10, 15)
+fmt.Printf(&quot;len:%d, cap:%d\n&quot;,len(slice),cap(slice))
+newSlice := make([]int, len(slice), 2*cap(slice))
+for i := range slice {
+  newSlice[i] slice[i]
+}
+slice = newSlice
+fmt.Printf(&quot;len:%d, cap:%d\n&quot;,len(slice),cap(slice))
+</code></pre>
+
+<p>pirnt:</p>
+
+<pre><code>len:10, cap:15
+len:10, cap:30
+</code></pre>
+
+<p>make也可以只传递两个值，这样它的len和cap就是一样的了：</p>
+
+<pre><code>slice := make([]int, 10)
+</code></pre>
+
+<p>slice的len和cap都是10</p>
+
+<p>make的时候是创建一个新的数组作为slice的存储，下面例子可以看出：</p>
+
+<pre><code>s1 := make([]int,5,10)
+s2 := make([]int,len(s2),2*cap(s1))
+fmt.Printf(&quot;s1.addr:%v,s2.addr:%v\n&quot;,&amp;s2[1],&amp;s8[0])
+</code></pre>
+
+<p>print:</p>
+
+<pre><code>s2.addr:0x11701540,s8.addr:0x1170155c
+</code></pre>
+
+<p>###Copy
+在扩展的时候，我们可能需要复制一个slice到另一个slice：</p>
+
+<pre><code>func Insert(slice []int, index,value int) []int {
+  slice := slice[0:len(slice)+1]
+  copy(slice[index+1:],slice[index:])
+  slice[index] = value
+  return slice
+}
+</code></pre>
+
+<p>slice[i:]和slice[i:len(slice)]一样，slice[:]和slice一样</p>
+
+<p>###Append</p>
+
+<p>自己创建一个Append来扩展slice：</p>
+
+<pre><code>func Append(slice []int, elements ...int) []int {
+  n := len(slice)
+  total := n + len(elements)  //elements看以看作是一个slice,可以其计算长度
+  if total &gt; cap(slice) {
+    newSlice := make([]int,total,total*3/2)
+copy(newSlice,slice)
+    slice = newSlice 
+  }
+  slcie = slice[:total]
+  copy(slice[n:],elements)
+  return slice
+}
+
+func main() {
+  s1 := []int{0,1,2,3,4}
+  s2 := []int{5,6,7}
+  fmt.Println(s1)
+  s1 = Append(s1,s2...)  //'...'是必须的
+  fmt.Println(s1)
+}
+</code></pre>
+
+<p>print:</p>
+
+<pre><code>[0,1,2,3,4]
+[0,1,2,3,4,5,6,7]
+</code></pre>
+
+<p>###内建的append</p>
+
+<p>上面是自己写的一个Append的函数，其实go中实现了一个内建的append，而且这个append对于任何类型的slice都可以append：</p>
+
+<pre><code>// Create a couple of starter slices.
+slice = []int{1, 2, 3}
+slice2 := []int{55, 66, 77}
+fmt.Println(&quot;Start slice: &quot;, slice)
+fmt.Println(&quot;Start slice2:&quot;, slice2)
+fmt.Printf(&quot;slice[0]:%p,slice2[0]:%p\n&quot;,&amp;slice[0],&amp;slice2[0])
+
+// Add an item to a slice.
+slice = append(slice, 4)
+fmt.Println(&quot;Add one item:&quot;, slice)
+fmt.Printf(&quot;slice[0]:%p\n&quot;,&amp;slice[0])
+
+// Add one slice to another.
+slice = append(slice, slice2...)
+fmt.Println(&quot;Add one slice:&quot;, slice)
+fmt.Printf(&quot;slice[0]:%p\n&quot;,&amp;slice[0])
+
+// Make a copy of a slice (of int).
+slice3 := append([]int(nil), slice...)
+fmt.Println(&quot;Copy a slice:&quot;, slice3)
+fmt.Printf(&quot;slice3[0]:%p\n&quot;,&amp;slice3[0])
+
+// Copy a slice to the end of itself.
+fmt.Println(&quot;Before append to self:&quot;, slice)
+slice = append(slice, slice...)
+fmt.Println(&quot;After append to self:&quot;, slice)
+fmt.Printf(&quot;slice[0]:%p\n&quot;,&amp;slice[0])
+</code></pre>
+
+<p>通过地址打印，我们会看到每次append之后返回的slice的地址都是不一样的，所以内建的append是会重新生成一个底层的array来持有数据的。</p>
+
+<p>###什么是nil</p>
+
+<p>go中如果一个slice是nil的，那么他的长度和容量都是0，并且它的起始地址是nil的：</p>
+
+<pre><code>sliceHeader {
+  Length: 0,
+  Capacity: 0,
+  ZeroElement: nil,
+}
+</code></pre>
+
+<p>或者</p>
+
+<pre><code>sliceHeader{}
+</code></pre>
+
+<p>需要注意的是它的起始地址为nil，如果一个slice是这样的：</p>
+
+<pre><code>slice = array[0:0]
+</code></pre>
+
+<p>那么这个slice不是nil的，因为它有起始地址，nil的slice是没有地方给它存储元素的并且是不可以增长，但是nil的slice是可以append的，因为append会重新分配空间</p>
+
+<p>###字符串(Strings)</p>
+
+<p>字符串可以看作是一个只读的字节(bytes)slice：</p>
+
+<pre><code>slash := '/usr/bin'[0]  //value is '/'
+usr := '/usr/bin'[0:4] //value is '/usr'
+</code></pre>
+
+<p>我们还可以直接将byte slice强制转换成字符串</p>
+
+<pre><code>str := string(slice)
+</code></pre>
+
+<p>或者反过来：</p>
+
+<pre><code>slice := []byte(str)
+</code></pre>
+
+<p>当然，对于字符串还有很多，这只是一个简单的概述</p>
+
+<p>最后，我们了解了slice和array的基本结构，尤其是slice的实现原理，对于我们使用slice是非常有益的，尤其是内建的copy和append函数</p>
+
+<p>参考资料：<a href="http://blog.golang.org/go-slices-usage-and-internals">http://blog.golang.org/go-slices-usage-and-internals</a></p>
+
+    <hr>
+    <div class="pagination">
+      <ul>
+        <ul>
+          
+          
+            <li class="prev disabled"><a>&larr; Previous</a></li>
+          
+
+            <li><a href="/archive">Archive</a></li>
+
+          
+            <li class="next"><a href="/2014/method-value-vs-method-expression-in-golang.html" title="Method Value和Method Expression">Next &rarr;</a></li>
+          
+          
+        </ul>
+      </ul>
+    </div>
+    <hr>
+    
+<div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'wowzai'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>2014-07-09</span></div>
+    <br>
+    <h4>Categories</h4>
+    <ul class="tag_box">
+    
+      <li>
+  <a href="/categories/#Blog-ref">Blog <span>9</span></a>
+</li>
+    
+    </ul>
+    <br>
+    <h4>Tags</h4>
+    <ul class="tag_box">
+    
+      <li>
+  <a href="/tags/#golang-ref">golang <span>3</span></a>
+</li>
+    
+    </ul>
+  </div>
+</div>
+
+      </div>
+
+      <footer>
+        <p>&copy; wowzai 2013 
+          with help from <a href="http://github.com/wendal/gor" target="_blank" title="Gor -- Fast Blog">Gor</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+		  and Idea from <a href="http://ruhoh.com" target="_blank" title="The Definitive Technical Blogging Framework">ruhoh</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+<script src="//cdnjscn.b0.upaiyun.com/libs/prettify/r298/prettify.min.js"></script>
+<script>
+  var pres = document.getElementsByTagName("pre");
+  for (var i=0; i < pres.length; ++i) {
+    pres[i].className = "prettyprint linenums";
+  }
+  prettyPrint();
+</script>
+
+    
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-51061968-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  </body>
+</html>
