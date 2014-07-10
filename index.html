@@ -91,6 +91,35 @@
 
 
 <div class="post">
+  <h3 class="title"><a href="/2014/http-in-golang.html">net.http如何提供http服务的大致实现</a> <span class="date">2014-07-10</span></h3>
+
+  <p>今天粗略的看了一下net.http的Server端的实现，总体上算是了解其大致的实现。</p>
+
+<h3>golang建立一个web server</h3>
+
+<p>用golang建立一个web server是一件非常容易的一件事，在<a href="http://golang.org/doc/effective_go.html#web_server">Effective_go</a>中就有个例子：</p>
+
+<pre><code>package main
+
+import (
+    &quot;flag&quot;
+    &quot;html/template&quot;
+    &quot;log&quot;
+    &quot;net/http&quot;
+)
+
+var addr = flag.String(&quot;addr&quot;, &quot;:1718&quot;, &quot;http service address&quot;) // Q=17, R=18
+
+var templ = template.Must(template.New(&quot;qr&quot;).Parse(templateStr))
+</code></pre>
+
+
+  <div class="more">
+    <a href="/2014/http-in-golang.html" class="btn">read more..</a>
+  </div>
+</div>
+
+<div class="post">
   <h3 class="title"><a href="/2014/array-and-slice-in-golang.html">Array和Slice</a> <span class="date">2014-07-09</span></h3>
 
   <h3>Array</h3>
