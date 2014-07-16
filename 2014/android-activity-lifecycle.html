@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Android Activity生命周期</title>
+  
+    <meta name="author" content="wowzai">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/twitter/stylesheets/bootstrap.min.css" type="text/css" rel="stylesheet" media="all">
+<link href="/assets/twitter/stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<link href="/assets/twitter/widgets/google_prettify/stylesheets/twitter-bootstrap.css" type="text/css" rel="stylesheet" media="all">
+ 
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">wowzai&#39;s blog</a>
+          <ul class="nav">
+            
+              
+
+
+  <li><a href="/archive">Archive</a></li>
+
+
+            
+              
+
+
+  <li><a href="/tags">Tags</a></li>
+
+
+            
+              
+
+
+  <li><a href="/categories">Categories</a></li>
+
+
+            
+              
+
+
+  <li><a href="/pages">Pages</a></li>
+
+
+            
+              
+
+
+  <li><a href="/about">About Me</a></li>
+
+
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        <div class="page-header">
+  <h1>Android Activity生命周期 </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <p>##Android Activity的生命周期</p>
+
+<p>要想谈谈Android Activity的生命周期，当然要从官方文档中的这个图说起：</p>
+
+<p>file:///D:/Android/adt-bundle-windows-x86_64-20140321/sdk/docs_backup0/images/activity_lifecycle.png</p>
+
+<p>其实从这个图已经可以很清楚的看到一个Activity的整个生命周期，不过我们还是要做个实验。</p>
+
+<pre><code class="java">    
+    public static final String TAG = &quot;MainActivity&quot;;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        System.out.println(&quot;MainActivity onCreate&quot;);
+        Log.e(TAG, &quot;MainActivity onCreate&quot;);
+        
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.container, new PlaceholderFragment())
+                    .commit();
+        }
+    }
+    
+    @Override
+    protected void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+        System.out.println(&quot;MainActivity onStart&quot;);
+        Log.e(TAG, &quot;MainActivity onStart&quot;);
+    }
+    
+    @Override
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        System.out.println(&quot;MainActivity onResume&quot;);
+        Log.e(TAG, &quot;MainActivity onResume&quot;);
+    }
+    
+    @Override
+    protected void onPause() {
+        // TODO Auto-generated method stub
+        super.onPause();
+        System.out.println(&quot;MainActivity onPause&quot;);
+        Log.e(TAG, &quot;MainActivity onPause&quot;);
+    }
+    
+    @Override
+    protected void onStop() {
+        // TODO Auto-generated method stub
+        super.onStop();
+        System.out.println(&quot;MainActivity onStop&quot;);
+        Log.e(TAG, &quot;MainActivity onStop&quot;);
+    }
+    
+    @Override
+    protected void onRestart() {
+        // TODO Auto-generated method stub
+        super.onRestart();
+        System.out.println(&quot;MainActivity onRestart&quot;);
+        Log.e(TAG, &quot;MainActivity onRestart&quot;);
+    }
+    
+    @Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+        System.out.println(&quot;MainActivity onDestory&quot;);
+        Log.e(TAG, &quot;MainActivity onDestory&quot;);
+    }  
+</code></pre>
+
+<p>我这里不知道怎么回事，LogCat无法打印日期，这个问题回头再查，我只好用Debug模式跟进去看看这几个函数执行的先后顺序。</p>
+
+<p>首先启动时，会调用到</p>
+
+<p>System.out.println(&ldquo;MainActivity onCreate&rdquo;);</p>
+
+<p>System.out.println(&ldquo;MainActivity onStart&rdquo;);</p>
+
+<p>System.out.println(&ldquo;MainActivity onResume&rdquo;);</p>
+
+<p>至此，这里前台已经可以展示内容，此时按下Home键，会调用到</p>
+
+<p>System.out.println(&ldquo;MainActivity onPause&rdquo;);</p>
+
+<p>System.out.println(&ldquo;MainActivity onStop&rdquo;);</p>
+
+<p>重新点开应用程序，会调用到</p>
+
+<p>System.out.println(&ldquo;MainActivity onRestart&rdquo;);</p>
+
+<p>System.out.println(&ldquo;MainActivity onStart&rdquo;);</p>
+
+<p>System.out.println(&ldquo;MainActivity onResume&rdquo;);</p>
+
+<p>至此前台可以看到展示内容，此时按下Back键，会调用到</p>
+
+<p>System.out.println(&ldquo;MainActivity onPause&rdquo;);</p>
+
+<p>System.out.println(&ldquo;MainActivity onStop&rdquo;);</p>
+
+<p>System.out.println(&ldquo;MainActivity onDestory&rdquo;);</p>
+
+<p>从这个过程可以看到在OnResume和OnPause之间Activity是可见的，官方文档指出如果我们有需要永久保存的内容，我们最好是在OnPause()中实现，同时Back键是会Destory对应的Activity的。</p>
+
+<p>当有两个Activity时，其中一个Activity是由另一个Activity驱动打开的，例如一个是MainActivity，界面中有一个按钮,点击这个按钮之后会启动另一个Activity，例如叫OtherActivity，此时启动主程序首先进入的是MainActivity，调用顺序如下：</p>
+
+<p>System.out.println(&ldquo;MainActivity onRestart&rdquo;);</p>
+
+<p>System.out.println(&ldquo;MainActivity onStart&rdquo;);</p>
+
+<p>System.out.println(&ldquo;MainActivity onResume&rdquo;);</p>
+
+<p>此时可以看到MainActivity中的内容，可以看到MainActivity中有一个Click按钮，点击这个按钮会启动另一个Activity&ndash;OtherActivity。</p>
+
+<p>点击Click按钮，MainActivity会先暂停，调用：</p>
+
+<p>System.out.println(&ldquo;MainActivity onPause&rdquo;);</p>
+
+<p>然后启动OtherActivity：</p>
+
+<p>System.out.println(&ldquo;OtherActivity onCreate&rdquo;);</p>
+
+<p>System.out.println(&ldquo;OtherActivity onStart&rdquo;);</p>
+
+<p>System.out.println(&ldquo;OtherActivity onResume&rdquo;);</p>
+
+<p>这个时候OtherActivity已经展现出来，接下来会将MainActivity停止掉，调用：</p>
+
+<p>System.out.println(&ldquo;MainActivity onStop&rdquo;);</p>
+
+<p>这个时候再点击Back键，OtherActivity会先暂停，然后MainActivity会重启：</p>
+
+<p>System.out.println(&ldquo;OtherActivity onPause&rdquo;);</p>
+
+<p>System.out.println(&ldquo;MainActivity onRestart&rdquo;);</p>
+
+<p>System.out.println(&ldquo;MainActivity onStart&rdquo;);</p>
+
+<p>System.out.println(&ldquo;MainActivity onResume&rdquo;);</p>
+
+<p>此时返回到MainActivity的界面，同时OtherActivity会停止并销毁：</p>
+
+<p>System.out.println(&ldquo;OtherActivity onStop&rdquo;);</p>
+
+<p>System.out.println(&ldquo;OtherActivity onDestory&rdquo;);</p>
+
+<p>如果在OtherActivity界面展现的时候，不点击Back而是点击Home键，
+调用顺序将是：</p>
+
+<p>System.out.println(&ldquo;OtherActivity onPause&rdquo;);</p>
+
+<p>System.out.println(&ldquo;OtherActivity onStop&rdquo;);</p>
+
+<p>从桌面点击程序图标启动程序，此时会OtherActivity会重启，回到按Home键之前的状态：</p>
+
+<p>System.out.println(&ldquo;OtherActivity onRestart&rdquo;);</p>
+
+<p>System.out.println(&ldquo;OtherActivity onStart&rdquo;);</p>
+
+<p>System.out.println(&ldquo;OtherActivity onResume&rdquo;);</p>
+
+    <hr>
+    <div class="pagination">
+      <ul>
+        <ul>
+          
+          
+            <li class="prev disabled"><a>&larr; Previous</a></li>
+          
+
+            <li><a href="/archive">Archive</a></li>
+
+          
+            <li class="next"><a href="/2014/http-in-golang.html" title="net.http如何提供http服务的大致实现">Next &rarr;</a></li>
+          
+          
+        </ul>
+      </ul>
+    </div>
+    <hr>
+    
+<div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'wowzai'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>2014-07-16</span></div>
+    <br>
+    <h4>Categories</h4>
+    <ul class="tag_box">
+    
+      <li>
+  <a href="/categories/#Blog-ref">Blog <span>11</span></a>
+</li>
+    
+    </ul>
+    <br>
+    <h4>Tags</h4>
+    <ul class="tag_box">
+    
+      <li>
+  <a href="/tags/#Android-ref">Android <span>1</span></a>
+</li>
+    
+      <li>
+  <a href="/tags/#Activity-ref">Activity <span>1</span></a>
+</li>
+    
+    </ul>
+  </div>
+</div>
+
+      </div>
+
+      <footer>
+        <p>&copy; wowzai 2013 
+          with help from <a href="http://github.com/wendal/gor" target="_blank" title="Gor -- Fast Blog">Gor</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+		  and Idea from <a href="http://ruhoh.com" target="_blank" title="The Definitive Technical Blogging Framework">ruhoh</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+<script src="//cdnjscn.b0.upaiyun.com/libs/prettify/r298/prettify.min.js"></script>
+<script>
+  var pres = document.getElementsByTagName("pre");
+  for (var i=0; i < pres.length; ++i) {
+    pres[i].className = "prettyprint linenums";
+  }
+  prettyPrint();
+</script>
+
+    
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-51061968-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  </body>
+</html>

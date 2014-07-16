@@ -91,6 +91,36 @@
 
 
 <div class="post">
+  <h3 class="title"><a href="/2014/android-activity-lifecycle.html">Android Activity生命周期</a> <span class="date">2014-07-16</span></h3>
+
+  <p>##Android Activity的生命周期</p>
+
+<p>要想谈谈Android Activity的生命周期，当然要从官方文档中的这个图说起：</p>
+
+<p>file:///D:/Android/adt-bundle-windows-x86_64-20140321/sdk/docs_backup0/images/activity_lifecycle.png</p>
+
+<p>其实从这个图已经可以很清楚的看到一个Activity的整个生命周期，不过我们还是要做个实验。</p>
+
+<p>java</p>
+
+<pre><code>public static final String TAG = &quot;MainActivity&quot;;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    System.out.println(&quot;MainActivity onCreate&quot;);
+    Log.e(TAG, &quot;MainActivity onCreate&quot;);
+</code></pre>
+
+
+  <div class="more">
+    <a href="/2014/android-activity-lifecycle.html" class="btn">read more..</a>
+  </div>
+</div>
+
+<div class="post">
   <h3 class="title"><a href="/2014/http-in-golang.html">net.http如何提供http服务的大致实现</a> <span class="date">2014-07-10</span></h3>
 
   <p>今天粗略的看了一下net.http的Server端的实现，总体上算是了解其大致的实现。</p>
@@ -327,23 +357,6 @@ Selectivity = 施加指定谓词条件后返回结果集的记录数/未施加�
 
   <div class="more">
     <a href="/2014/Windows下查看端口和进程绑定.html" class="btn">read more..</a>
-  </div>
-</div>
-
-<div class="post">
-  <h3 class="title"><a href="/2014/new-born.html">我的第一篇Blog</a> <span class="date">2014-05-15</span></h3>
-
-  <h1>我的第一篇Blog</h1>
-
-<p>&ndash;</p>
-
-<p>我的第一篇blog,new born!</p>
-
-<p>加油吧，少年！</p>
-
-
-  <div class="more">
-    <a href="/2014/new-born.html" class="btn">read more..</a>
   </div>
 </div>
 
