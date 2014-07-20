@@ -108,18 +108,32 @@
 </div>
 
 <div class="post">
-  <h3 class="title"><a href="/2014/come-on.html">come on</a> <span class="date">2014-07-20</span></h3>
+  <h3 class="title"><a href="/2014/android-activity-lifecycle.html">Android Activity生命周期</a> <span class="date">2014-07-16</span></h3>
 
-  <p>##Come on</p>
+  <p>##Android Activity的生命周期</p>
 
-<p>一晃一个星期又过去了，尼玛，好桑心，说好的计划发现根本完不成啊，不过今天把房子租出去了，算是了了一桩心事了，以后不要再
-为这事操心了。</p>
+<p>要想谈谈Android Activity的生命周期，当然要从官方文档中的这个图说起：</p>
 
-<p>接下来应该要更加地努力地干活了哦！</p>
+<p>file:///D:/Android/adt-bundle-windows-x86_64-20140321/sdk/docs_backup0/images/activity_lifecycle.png</p>
+
+<p>其实从这个图已经可以很清楚的看到一个Activity的整个生命周期，不过我们还是要做个实验。</p>
+
+<p>java</p>
+
+<pre><code>public static final String TAG = &quot;MainActivity&quot;;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    System.out.println(&quot;MainActivity onCreate&quot;);
+    Log.e(TAG, &quot;MainActivity onCreate&quot;);
+</code></pre>
 
 
   <div class="more">
-    <a href="/2014/come-on.html" class="btn">read more..</a>
+    <a href="/2014/android-activity-lifecycle.html" class="btn">read more..</a>
   </div>
 </div>
 
