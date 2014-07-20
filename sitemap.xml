@@ -4,8 +4,13 @@
 		<loc>http://www.wowzai.com/</loc>
 	</url>
 	<url>
-		<loc>http://www.wowzai.com/2014/android-activity-lifecycle.html</loc>
-		<lastmod>2014-07-16</lastmod>
+		<loc>http://www.wowzai.com/2014/come-on.html</loc>
+		<lastmod>2014-07-20</lastmod>
+		<changefreq>weekly</changefreq>
+	</url>
+	<url>
+		<loc>http://www.wowzai.com/2014/come-on.html</loc>
+		<lastmod>2014-07-20</lastmod>
 		<changefreq>weekly</changefreq>
 	</url>
 	<url>
