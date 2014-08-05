@@ -4,6 +4,11 @@
 		<loc>http://www.wowzai.com/</loc>
 	</url>
 	<url>
+		<loc>http://www.wowzai.com/2014/plan-of-2014-08.html</loc>
+		<lastmod>2014-08-05</lastmod>
+		<changefreq>weekly</changefreq>
+	</url>
+	<url>
 		<loc>http://www.wowzai.com/2014/chinese-string-in-golang.html</loc>
 		<lastmod>2014-08-04</lastmod>
 		<changefreq>weekly</changefreq>
