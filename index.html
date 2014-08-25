@@ -91,13 +91,39 @@
 
 
 <div class="post">
-  <h3 class="title"><a href="/2014/buy-house.html">买房</a> <span class="date">2014-08-10</span></h3>
+  <h3 class="title"><a href="/2014/buy-house-2.html">买房2</a> <span class="date">2014-08-26</span></h3>
+
+  <p>自从上次决定买房之后，这几个星期主要精力都用在了买房之上，我先是看了御景蓝湾的房子，看了他们的样板房，觉得挺好的，于是才决定买的。</p>
+
+<p>后来我老婆去看了一下，也觉得挺好的，只不过发现周围好多进城的卡车，尘土飞扬，觉得不安全，不卫生，我想也是，主要是不安全，以后小孩上学的路上碰到卡车多危险，卫不卫生倒不是很重要，起码对于我来说不是很重要。</p>
+
+<p>但是那时候已经决定买房了，所以周末（2014.8.16）就回家了，问家里人集点资，为马上的买房行为做好准备。</p>
+
+<p>后来老婆在星光大道转悠，发现泊林春天的广告，两个人回来仔细的研究了一下，最后一致的认为这个地段比御景蓝湾的要好，唯一担心的就是价格，
+因为那个时候还没开盘，价格还没公布，最后我还是让老婆先去看一下，后来由于各种原因，老婆也没有去看成，最后老婆建议我请个半天假我们两个人一起去看一下，我觉得也对，于是就上个星期二（2014.8.19）我请了下午的假，两个人一起去看了一下房子。</p>
+
+<p>那天天空不作美啊，下着雨，我们转了两次公交后终于到达目的地，在其中一次等公交的时候离楼盘不是很远，周围都是各种楼盘，然后我们几乎把周围的楼盘的电话打了个遍，尼玛，发现都买不起，晕。到了目的地之后，下车之后在你那荒郊野外的地方根本不知道怎么走，尼玛，老婆说不买了，太偏了啥的，我说既然都来了，先看了再说。于是找了又找，终于回头一看发现了楼盘的售楼处，两个人这才进去。</p>
+
+<p>进去以后，一个售楼小姐开始招待我们，后来另一个售楼先生给我老婆打电话（来的路上给他打过电话没接），然后那个男的开始招待我们，两位交接的时候我看到售楼小姐难看的脸色，呵呵。介绍的过程就不表了，就是讲解了一下楼盘的位置，周围的设施等等，然后去看了样板房，对于样板房也表满意，除了厨房的设计，再后来就是聊了一会，基本就是我们问一些问题，他向我们介绍一下，然后我们就签了一个交5000抵20000的协议并把钱交了，之后就出来了。</p>
+
+<p>接下来就是比较回去了，找了下公交，发现有更加方便的公交，不过还是要转一次车，然后就是一起吃了个饭，你以为这个时候是要快快乐乐的回家了吗，当然不，一想到即将到来的债务，尼玛，我又乖乖的回到公司加班了，哈哈。</p>
+
+<p>未完待续……</p>
+
+
+  <div class="more">
+    <a href="/2014/buy-house-2.html" class="btn">read more..</a>
+  </div>
+</div>
+
+<div class="post">
+  <h3 class="title"><a href="/2014/buy-house-1.html">买房1</a> <span class="date">2014-08-10</span></h3>
 
   <h3>决定买房了，嗯，就这样。</h3>
 
 
   <div class="more">
-    <a href="/2014/buy-house.html" class="btn">read more..</a>
+    <a href="/2014/buy-house-1.html" class="btn">read more..</a>
   </div>
 </div>
 
@@ -308,36 +334,6 @@ func main() {
 
   <div class="more">
     <a href="/2014/method-value-vs-method-expression-in-golang.html" class="btn">read more..</a>
-  </div>
-</div>
-
-<div class="post">
-  <h3 class="title"><a href="/2014/defer-in-golang.html">golang中defer的执行位置</a> <span class="date">2014-07-07</span></h3>
-
-  <p>##golang中defer的执行位置</p>
-
-<p>大家都知道golang的defer关键字，它可以在函数返回前执行一些操作，最常用的就是打开一个资源（例如一个文件、数据库连接等）时就用defer延迟关闭改资源，以免引起内存泄漏。例如：</p>
-
-<pre><code>func do() (ok bool) {
-  file,_ := os.Open(&quot;c:\a.txt&quot;)
-  defer file.Close()
-  // doSomething
-  return ok
-}
-</code></pre>
-
-<p>我们可以在官方的文档中看到defer的执行顺序是逆序的，也就是先进后出的顺序：</p>
-
-<pre><code>for i := 0; i &lt; 5; i++ {
-  defer fmt.Printf(&quot;%d &quot;, i)
-}
-</code></pre>
-
-<p>打印结果是：4,3,2,1,0</p>
-
-
-  <div class="more">
-    <a href="/2014/defer-in-golang.html" class="btn">read more..</a>
   </div>
 </div>
 
