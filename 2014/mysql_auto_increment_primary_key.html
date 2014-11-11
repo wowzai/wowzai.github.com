@@ -87,8 +87,9 @@
 alter table <code>test</code> change <code>id</code> <code>id</code> int (11) UNSIGNED NOT NULL AUTO_INCREMENT , add primary key (<code>id</code> );</p>
 
 <p>修改ID字段为自增非主键：
-alter table <code>test</code> change <code>id</code> <code>id</code> int (11) UNSIGNED NOT NULL AUTO_INCREMENT , drop primary key;
-修改ID字段为普通字段：
+alter table <code>test</code> change <code>id</code> <code>id</code> int (11) UNSIGNED NOT NULL AUTO_INCREMENT , drop primary key;</p>
+
+<p>修改ID字段为普通字段：
 alter table <code>test</code> change <code>id</code> <code>id</code> int (11) UNSIGNED NOT NULL ;</p>
 
     <hr>
