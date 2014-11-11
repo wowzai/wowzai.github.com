@@ -91,6 +91,23 @@
 
 
 <div class="post">
+  <h3 class="title"><a href="/2014/mysql_auto_increment_primary_key.html">MySQL自增主键问题</a> <span class="date">2014-11-12</span></h3>
+
+  <p>修改ID字段为自增主键：
+alter table <code>test</code> change <code>id</code> <code>id</code> int (11) UNSIGNED NOT NULL AUTO_INCREMENT , add primary key (<code>id</code> );</p>
+
+<p>修改ID字段为自增非主键：
+alter table <code>test</code> change <code>id</code> <code>id</code> int (11) UNSIGNED NOT NULL AUTO_INCREMENT , drop primary key;
+修改ID字段为普通字段：
+alter table <code>test</code> change <code>id</code> <code>id</code> int (11) UNSIGNED NOT NULL ;</p>
+
+
+  <div class="more">
+    <a href="/2014/mysql_auto_increment_primary_key.html" class="btn">read more..</a>
+  </div>
+</div>
+
+<div class="post">
   <h3 class="title"><a href="/2014/Alibaba-IPO.html">阿里上市</a> <span class="date">2014-09-20</span></h3>
 
   <p>今天在家里看完《硅谷》（第一季），看到Richard经过一晚的努力他们的压缩软件的weissman评分提高到了5.2，那一刻不知道为什么，突然被感动的想哭，就好像自己的努力得到认可一样，恰好赶上阿里上市，祝贺阿里人，虽然我们互不认识。</p>
@@ -278,36 +295,6 @@
 
   <div class="more">
     <a href="/2014/come-on.html" class="btn">read more..</a>
-  </div>
-</div>
-
-<div class="post">
-  <h3 class="title"><a href="/2014/android-activity-lifecycle.html">Android Activity生命周期</a> <span class="date">2014-07-16</span></h3>
-
-  <p>##Android Activity的生命周期</p>
-
-<p>要想谈谈Android Activity的生命周期，当然要从官方文档中的这个图说起：</p>
-
-<p>file:///D:/Android/adt-bundle-windows-x86_64-20140321/sdk/docs_backup0/images/activity_lifecycle.png</p>
-
-<p>其实从这个图已经可以很清楚的看到一个Activity的整个生命周期，不过我们还是要做个实验。</p>
-
-<p>java</p>
-
-<pre><code>public static final String TAG = &quot;MainActivity&quot;;
-
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-
-    System.out.println(&quot;MainActivity onCreate&quot;);
-    Log.e(TAG, &quot;MainActivity onCreate&quot;);
-</code></pre>
-
-
-  <div class="more">
-    <a href="/2014/android-activity-lifecycle.html" class="btn">read more..</a>
   </div>
 </div>
 
