@@ -91,6 +91,40 @@
 
 
 <div class="post">
+  <h3 class="title"><a href="/2015/JavaScript-notes.html">JavaScript学习笔记</a> <span class="date">2015-04-01</span></h3>
+
+  <p>1.HTML是顺序加载的，如果改变界面元素的话，需要将script放在下面，这样才能保证script执行的时候操作界面元素可以找到对应的界面元素：</p>
+
+<pre><code>var myHeading = document.querySelector('h1');
+myHeading.innerHTML = 'Hello world!';
+</code></pre>
+
+<p>变量：
+用var关键字声明，声明时不需要声明数据类型，可以自动判断</p>
+
+<pre><code>var myVariable = 'Bob';
+myVariable = 'Steve';
+</code></pre>
+
+<p>数据类型：</p>
+
+<pre><code>Variable    Explanation Example
+String  A string of text. To signify that the variable is a string, you should enclose it in quote marks.   var myVariable = 'Bob';
+Number  A number. Numbers don't have quotes around them.    var myVariable = 10;
+Boolean A True/False value. true/false are special keywords in JS, and don't need quotes.   var myVariable = true;
+Array   A structure that allows you to store multiple values in one single reference.   var myVariable = [1,'Bob','Steve',10];
+        Call each member of the array like this: myVariable[0],myVariable[1], etc.
+Object  Basically, anything. Everything in JavaScript is an object, and can be stored in a variable. Keep this in mind as you learn.    var myVariable = document.querySelector('h1');
+        All of the above examples too.
+</code></pre>
+
+
+  <div class="more">
+    <a href="/2015/JavaScript-notes.html" class="btn">read more..</a>
+  </div>
+</div>
+
+<div class="post">
   <h3 class="title"><a href="/2015/my-life-is-your-responsibility.html">我的生活由你负责</a> <span class="date">2015-03-15</span></h3>
 
   <p>生活中有很多问题，很多问题都是因为钱的问题引起的，钱是很多直接的导火索，但是大部分情况只是我们心智不够而已，这真是一个悲伤的故事。</p>
@@ -277,34 +311,6 @@ alter table <code>test</code> change <code>id</code> <code>id</code> int (11) UN
 
   <div class="more">
     <a href="/2014/buy-house-1.html" class="btn">read more..</a>
-  </div>
-</div>
-
-<div class="post">
-  <h3 class="title"><a href="/2014/plan-of-2014-08.html">2014.08计划</a> <span class="date">2014-08-05</span></h3>
-
-  <p>从今年的五月份开始，每个月我都给自己订立计划，经过三个月的失败（2014.05、2014.06、2014.07），我彻底醒悟，发现我
-之前订立的计划根本没有一个月是完全完成的，我分析了一下，主要有两个原因：</p>
-
-<p>1.加班太忙，几乎每天加班，导致没有自己的时间干自己的事情。</p>
-
-<p>2.时间没有分配好，有时候闲了一下，还不知道干什么，这个时候最容易偷懒。</p>
-
-<p>3.效率太低，单位时间活干的较少，这其实涉及到自己基本功的问题，基本功不扎实导致学东西的时候效率较低，
-这个还得慢慢来补。</p>
-
-<p>鉴于前面三个月的失败案例，决定从这个月起，将计划减少，不要设置很多个计划，到最后都没有完成。</p>
-
-<pre><code>看完第四章：Oracle里的查询转换
-
-游泳十次
-
-写三遍bolg
-</code></pre>
-
-
-  <div class="more">
-    <a href="/2014/plan-of-2014-08.html" class="btn">read more..</a>
   </div>
 </div>
 

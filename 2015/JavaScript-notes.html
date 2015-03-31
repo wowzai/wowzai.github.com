@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript学习笔记</title>
+  
+    <meta name="author" content="wowzai">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/twitter/stylesheets/bootstrap.min.css" type="text/css" rel="stylesheet" media="all">
+<link href="/assets/twitter/stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<link href="/assets/twitter/widgets/google_prettify/stylesheets/twitter-bootstrap.css" type="text/css" rel="stylesheet" media="all">
+ 
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">wowzai&#39;s blog</a>
+          <ul class="nav">
+            
+              
+
+
+  <li><a href="/archive">Archive</a></li>
+
+
+            
+              
+
+
+  <li><a href="/tags">Tags</a></li>
+
+
+            
+              
+
+
+  <li><a href="/categories">Categories</a></li>
+
+
+            
+              
+
+
+  <li><a href="/pages">Pages</a></li>
+
+
+            
+              
+
+
+  <li><a href="/about">About Me</a></li>
+
+
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        <div class="page-header">
+  <h1>JavaScript学习笔记 </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <p>1.HTML是顺序加载的，如果改变界面元素的话，需要将script放在下面，这样才能保证script执行的时候操作界面元素可以找到对应的界面元素：</p>
+
+<pre><code>var myHeading = document.querySelector('h1');
+myHeading.innerHTML = 'Hello world!';
+</code></pre>
+
+<p>变量：
+用var关键字声明，声明时不需要声明数据类型，可以自动判断</p>
+
+<pre><code>var myVariable = 'Bob';
+myVariable = 'Steve';
+</code></pre>
+
+<p>数据类型：</p>
+
+<pre><code>Variable    Explanation Example
+String  A string of text. To signify that the variable is a string, you should enclose it in quote marks.   var myVariable = 'Bob';
+Number  A number. Numbers don't have quotes around them.    var myVariable = 10;
+Boolean A True/False value. true/false are special keywords in JS, and don't need quotes.   var myVariable = true;
+Array   A structure that allows you to store multiple values in one single reference.   var myVariable = [1,'Bob','Steve',10];
+        Call each member of the array like this: myVariable[0],myVariable[1], etc.
+Object  Basically, anything. Everything in JavaScript is an object, and can be stored in a variable. Keep this in mind as you learn.    var myVariable = document.querySelector('h1');
+        All of the above examples too.
+</code></pre>
+
+<p>更多详细内容可见：  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">JavaScript数据类型</a></p>
+
+<p>注释：</p>
+
+<pre><code>1. //
+
+2. /*
+    content
+    …
+   */
+</code></pre>
+
+<p>操作：</p>
+
+<pre><code>Operator    Explanation Symbol(s)   Example
+add/concatenation   Used to add two numbers together, or glue two strings together. +   6 + 9;
+            &quot;Hello &quot; + &quot;world!&quot;;
+subtract, multiple, divide  These do what you'd expect them to do in basic math.    -, *, / 9 - 3;
+            8 * 2; // multiply in JS is an asterisk
+            9 / 3;
+assignment operator You've seen this already: it assigns a value to a variable. =   var myVariable = 'Bob';
+Identity operator   Does a test to see if two values are equal to one another, and returns atrue/false (boolean) result.    === var myVariable = 3;
+            myVariable === 4;
+Negation, not equal Often used alongside the Equality operator, the negation operator is the JS equivalent of a logical NOT — it turns a true into a false, etc.    !, !==  The basic expression istrue, but the comparison returns falsebecause we've negated it:
+            var myVariable = 3;
+            !myVariable === 3;
+            Here we are testing &quot;ismyVariable NOT equal to 3&quot;. This returns false, because it IS equal to 3.
+            var myVariable = 3;
+            myVariable !== 3;
+</code></pre>
+
+<p>疑问： ==与===的区别？</p>
+
+<p>==在比较时如果两个变量的类型不同，会作类型转换，具体如何转换没有了解</p>
+
+<pre><code> 1   ==  1     // true
+&quot;1&quot;  ==  1     // true
+ 1   == '1'    // true
+ 0   == false  // true
+</code></pre>
+
+<p>===是严格的比较，不同的类型也不会转换</p>
+
+<pre><code>3 === 3   // true
+3 === '3' // false
+</code></pre>
+
+<p>同样，!=和!==的区别也一样</p>
+
+<p>更多详细内容： <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators">JavaScript操作符</a></p>
+
+<p>条件语句：</p>
+
+<pre><code>var iceCream = 'chocolate';
+if (iceCream === 'chocolate') {
+  alert('Yay, I love chocolate ice cream!');    
+} else {
+  alert('Awwww, but chocolate is my favorite...');    
+}
+</code></pre>
+
+<p>函数：
+    函数可以提高代码的复用率：</p>
+
+<pre><code>function multiply(num1,num2) {
+    var result = num1 * num2;
+    return result;
+}
+
+multiply(4,7);
+multiply(20,20);
+multiply(0.5,3);
+</code></pre>
+
+<p>在函数外面的定义的变量是全局变量，在函数里面定义的变量是局部变量，JavaScript中没有块语句域，即在花括号的变量中作用域也是在整个函数中可用的，而不是只能在花括号里能用：</p>
+
+<pre><code>if (true) {
+  var x = 5;
+}
+console.log(x);  // 5
+</code></pre>
+
+<p>关于变量的作用域，可以阅读： <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Variable_scope">JavaScript变量作用域</a></p>
+
+<p>事件：</p>
+
+<p>网页的交互就需要事件，例如点击事件：</p>
+
+<pre><code>document.querySelector('html').onclick = function() {
+    alert('Ouch! Stop poking me!');
+}
+</code></pre>
+
+<p>给整个html赋上Click事件</p>
+
+<pre><code>document.querySelector('html').onclick = function() {};
+</code></pre>
+
+<p>等价于：</p>
+
+<pre><code>var myHTML = document.querySelector('html');
+myHTML.onclick = function() {};
+</code></pre>
+
+<p>如果在父子标签中都设置了事件，两个事件都会执行，例如在HTML赋事件后再在H1标签上赋事件，则点击H1文字后，先执行H1的事件，再执行HTML的事件：</p>
+
+<pre><code>document.querySelector('html').onclick = function() {
+    alert('Ouch! Stop poking me!');
+}
+
+document.querySelector('h1').onclick = function() {
+    alert('h1 click!');
+}
+</code></pre>
+
+<p>点击H1的文字先弹出“h1 click”再弹出“Ouch! Stop poking me!” （chrome 41）</p>
+
+<p>1.querySelector</p>
+
+<p>如果有多个botton/h1,querySelector()只是获取第一个，例如：</p>
+
+<pre><code>var myButton = document.querySelector('button');//只会获取第一个button对象
+</code></pre>
+
+<p>2.prompt()函数:</p>
+
+<p>弹出窗体，可以让用户输入</p>
+
+<p>3.localStrorage可以设置/获取数据，存在本地
+        localStorage.setItem(&lsquo;name&rsquo;, myName);
+        localStorage.getItem(&lsquo;name&rsquo;);</p>
+
+<p>阅读材料：<a href="https://developer.mozilla.org/en-US/Learn/Getting_started_with_the_web/JavaScript_basics">JavaScript基础</a></p>
+
+    <hr>
+    <div class="pagination">
+      <ul>
+        <ul>
+          
+          
+            <li class="prev disabled"><a>&larr; Previous</a></li>
+          
+
+            <li><a href="/archive">Archive</a></li>
+
+          
+            <li class="next"><a href="/2015/my-life-is-your-responsibility.html" title="我的生活由你负责">Next &rarr;</a></li>
+          
+          
+        </ul>
+      </ul>
+    </div>
+    <hr>
+    
+<div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'wowzai'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>2015-04-01</span></div>
+    <br>
+    <h4>Categories</h4>
+    <ul class="tag_box">
+    
+      <li>
+  <a href="/categories/#Blog-ref">Blog <span>25</span></a>
+</li>
+    
+    </ul>
+    <br>
+    <h4>Tags</h4>
+    <ul class="tag_box">
+    
+      <li>
+  <a href="/tags/#JavaScript-ref">JavaScript <span>1</span></a>
+</li>
+    
+      <li>
+  <a href="/tags/#notes-ref">notes <span>1</span></a>
+</li>
+    
+    </ul>
+  </div>
+</div>
+
+      </div>
+
+      <footer>
+        <p>&copy; wowzai 2013 
+          with help from <a href="http://github.com/wendal/gor" target="_blank" title="Gor -- Fast Blog">Gor</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+		  and Idea from <a href="http://ruhoh.com" target="_blank" title="The Definitive Technical Blogging Framework">ruhoh</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+<script src="//cdnjscn.b0.upaiyun.com/libs/prettify/r298/prettify.min.js"></script>
+<script>
+  var pres = document.getElementsByTagName("pre");
+  for (var i=0; i < pres.length; ++i) {
+    pres[i].className = "prettyprint linenums";
+  }
+  prettyPrint();
+</script>
+
+    
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-51061968-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  </body>
+</html>
