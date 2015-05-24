@@ -91,6 +91,63 @@
 
 
 <div class="post">
+  <h3 class="title"><a href="/2015/jQuery-notes-1.html">jQuery学习笔记1</a> <span class="date">2015-05-24</span></h3>
+
+  <p>1.ready事件，event.preventDefault()组织默认程序执行</p>
+
+<pre><code>    &lt;a href=&quot;http://jquery.com/&quot;&gt;jQuery&lt;/a&gt;
+    &lt;script src=&quot;scripts/jquery-1.11.2.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $(document).ready(function() {
+            $(&quot;a&quot;).click(function( event ) {
+                alert( &quot;As you can see, the link no longer took you to jquery.com&quot; );
+                event.preventDefault();
+            });
+       });
+    &lt;/script&gt;
+
+    $( &quot;a&quot; ).addClass( &quot;test&quot; );
+
+    $( &quot;a&quot; ).removeClass( &quot;test&quot; );
+
+</code></pre>
+
+
+  <div class="more">
+    <a href="/2015/jQuery-notes-1.html" class="btn">read more..</a>
+  </div>
+</div>
+
+<div class="post">
+  <h3 class="title"><a href="/2015/JavaScript-notes.html">jQuery学习笔记1</a> <span class="date">2015-05-24</span></h3>
+
+  <p>1.ready事件，event.preventDefault()组织默认程序执行</p>
+
+<pre><code>&lt;a href=&quot;http://jquery.com/&quot;&gt;jQuery&lt;/a&gt;
+    &lt;script src=&quot;scripts/jquery-1.11.2.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $(document).ready(function() {
+            $(&quot;a&quot;).click(function( event ) {
+                alert( &quot;As you can see, the link no longer took you to jquery.com&quot; ); 
+                event.preventDefault();
+            });
+       });
+  &lt;/script&gt; 
+
+$( &quot;a&quot; ).addClass( &quot;test&quot; );
+
+$( &quot;a&quot; ).removeClass( &quot;test&quot; );
+</code></pre>
+
+<p>2.回调</p>
+
+
+  <div class="more">
+    <a href="/2015/JavaScript-notes.html" class="btn">read more..</a>
+  </div>
+</div>
+
+<div class="post">
   <h3 class="title"><a href="/2015/second-reading-notes-of-ba-shi-jian-dang-zuo-peng-you.html">《把时间当作朋友》读书笔记（下）</a> <span class="date">2015-04-30</span></h3>
 
   <p>这是接上一篇《把时间当作朋友》读书笔记。</p>
@@ -142,41 +199,6 @@
 
   <div class="more">
     <a href="/2015/reading-notes-of-ba-shi-jian-dang-zuo-peng-you.html" class="btn">read more..</a>
-  </div>
-</div>
-
-<div class="post">
-  <h3 class="title"><a href="/2015/JavaScript-notes.html">JavaScript学习笔记</a> <span class="date">2015-04-01</span></h3>
-
-  <p>1.HTML是顺序加载的，如果改变界面元素的话，需要将script放在下面，这样才能保证script执行的时候操作界面元素可以找到对应的界面元素：</p>
-
-<pre><code>var myHeading = document.querySelector('h1');
-myHeading.innerHTML = 'Hello world!';
-</code></pre>
-
-<p>变量：
-用var关键字声明，声明时不需要声明数据类型，可以自动判断</p>
-
-<pre><code>var myVariable = 'Bob';
-myVariable = 'Steve';
-</code></pre>
-
-<p>数据类型：</p>
-
-<pre><code>  Variable  | Explanation | Example
-  --------- | ----------- | -----: 
-  String    | A string of text. To signify that the variable is a string, you should enclose it in quote marks.|    var myVariable = 'Bob';
-|Number     |A number. Numbers don't have quotes around them.                                                    |var myVariable = 10;     |
-|Boolean    |A True/False value. true/false are special keywords in JS, and don't need quotes.  |var myVariable = true;|
-|Array      |A structure that allows you to store multiple values in one single reference.  |var myVariable = [1,'Bob','Steve',10];
-        Call each member of the array like this: myVariable[0],myVariable[1], etc.|
-|Object     |Basically, anything. Everything in JavaScript is an object, and can be stored in a variable. Keep this in mind as you learn.   |var myVariable = document.querySelector('h1');
-        All of the above examples too.|
-</code></pre>
-
-
-  <div class="more">
-    <a href="/2015/JavaScript-notes.html" class="btn">read more..</a>
   </div>
 </div>
 
@@ -300,36 +322,6 @@ alter table <code>test</code> change <code>id</code> <code>id</code> int (11) UN
 
   <div class="more">
     <a href="/2014/young.html" class="btn">read more..</a>
-  </div>
-</div>
-
-<div class="post">
-  <h3 class="title"><a href="/2014/plan-of-2014-09.html">2014.09计划</a> <span class="date">2014-09-03</span></h3>
-
-  <p>废话不多说，先来总结上个月的计划完成情况：</p>
-
-<pre><code>1.看完第四章：Oracle里的查询转换   完成50%，后期由于买房事宜耽误，但其实我知道这不是真正的理由
-
-2.游泳十次                       未完成，游泳三次，由于天气原因+发版计划，未能完成
-
-3.写三遍bolg                     完成，如果严格的话把买房的博文剔除的话，还是未完成
-</code></pre>
-
-<p>首先，正视自己，诚实地面对自己，不再对自己定好高骛远的计划了，定了也没用，根本完不成，现在我需要更加务实地去制定计划，
-我需要真正落地的计划，而不是完不成的to-do list。</p>
-
-<p>8月的主要时间是花在了买房的事宜上，包括看房、选择、权衡以及集资。</p>
-
-<p>9月的计划：</p>
-
-<pre><code>1.看完第四章：Oracle里的查询转换
-
-2.跑步5公里
-</code></pre>
-
-
-  <div class="more">
-    <a href="/2014/plan-of-2014-09.html" class="btn">read more..</a>
   </div>
 </div>
 

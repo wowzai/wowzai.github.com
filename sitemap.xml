@@ -4,6 +4,16 @@
 		<loc>http://www.wowzai.com/</loc>
 	</url>
 	<url>
+		<loc>http://www.wowzai.com/2015/jQuery-notes-1.html</loc>
+		<lastmod>2015-05-24</lastmod>
+		<changefreq>weekly</changefreq>
+	</url>
+	<url>
+		<loc>http://www.wowzai.com/2015/JavaScript-notes.html</loc>
+		<lastmod>2015-05-24</lastmod>
+		<changefreq>weekly</changefreq>
+	</url>
+	<url>
 		<loc>http://www.wowzai.com/2015/second-reading-notes-of-ba-shi-jian-dang-zuo-peng-you.html</loc>
 		<lastmod>2015-04-30</lastmod>
 		<changefreq>weekly</changefreq>
@@ -11,11 +21,6 @@
 	<url>
 		<loc>http://www.wowzai.com/2015/reading-notes-of-ba-shi-jian-dang-zuo-peng-you.html</loc>
 		<lastmod>2015-04-15</lastmod>
-		<changefreq>weekly</changefreq>
-	</url>
-	<url>
-		<loc>http://www.wowzai.com/2015/JavaScript-notes.html</loc>
-		<lastmod>2015-04-01</lastmod>
 		<changefreq>weekly</changefreq>
 	</url>
 	<url>
